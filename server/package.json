@@ -1,0 +1,37 @@
+{
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "child_process": "^1.0.2",
+    "express": "^4.16.4",
+    "express-validator": "^5.3.1",
+    "fs": "0.0.1-security",
+    "googleapis": "^40.0.0",
+    "mongoose": "^5.5.11",
+    "nodemailer": "^6.2.1",
+    "nodemon": "^1.19.0",
+    "uuid": "^3.3.2"
+  },
+  "name": "api",
+  "version": "1.0.0",
+  "description": "API to call a python script",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jafiecht/soil_api.git"
+  },
+  "keywords": [
+    "node",
+    "javascript",
+    "python"
+  ],
+  "author": "Jeff Fiechter",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jafiecht/soil_api/issues"
+  },
+  "homepage": "https://github.com/jafiecht/soil_api#readme"
+}

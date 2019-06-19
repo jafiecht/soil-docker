@@ -14,7 +14,6 @@ taskID = sys.argv[1]
 ############################################################################
 from pymongo import MongoClient
 import config
-import pprint
 
 client = MongoClient(config.mongoURI)
 db = client['soil-dev']

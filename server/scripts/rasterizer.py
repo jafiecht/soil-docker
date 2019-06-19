@@ -18,6 +18,7 @@ def rasterize(taskID):
 
   #Open the template raster for template information
   template = rasterio.open(templatefp)
+  template_arr = template.read(1)
   meta = template.meta.copy()
   meta['nodata'] = 9999
   
@@ -26,7 +27,7 @@ def rasterize(taskID):
     
     #Create a new raster for writing.
     with rasterio.open(outfp+str(row.Point_ID)+'.tif', 'w', **meta) as out:
-      out_arr = out.read(1)
+      out_arr = np.full_like(template_arr, 9999)
      
       #Transform and rasterize shape data
       shapes = ((geom, value) for geom, value in zip([row.geometry], [row[points.columns[0]]]))

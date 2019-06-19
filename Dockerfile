@@ -17,6 +17,19 @@ RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources
 RUN apt-get update
 RUN apt-get -y install yarn
 
+#Testing: install python libraries
+RUN apt-get update
+RUN apt install python3-pip
+RUN pip3 install pymongo
+RUN pip3 install geopandas
+RUN pip3 install matplotlib
+RUN pip3 install requests
+RUN pip3 install rasterio
+RUN pip3 install scipy
+RUN pip3 install sklearn
+#RUN pip3 install sklearn
+#RUN pip3 install sklearn
+
 #A few dev needs...
 RUN apt-get -y install vim
 

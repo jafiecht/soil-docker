@@ -19,7 +19,7 @@ def generate_curvatures(taskID):
   elev = raster.read(1)
   meta = raster.meta.copy()
   meta['nodata'] = 0
-  resolution = meta['transform'][1]
+  resolution = 3
   
   #Set the neighborhoods to generate for
   neighborhoods = [5, 25, 55]

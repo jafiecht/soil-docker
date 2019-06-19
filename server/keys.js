@@ -14,7 +14,7 @@ module.exports = {
   service: 'gmail',
   type: 'OAuth2',
   user: 'soil.interpolation@gmail.com'
-
+//process.env.XXXKEYXXX
 }
 
 //Username: jeff

@@ -18,6 +18,7 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.static('../client/build'));
 app.use(express.static('public'));
 
 /*Nessesary while in development*/
@@ -33,6 +34,10 @@ app.use(function (req, res, next) {
 //Routes
 //////////////////////////////////////////////////////////////////
 require('./routes')(app);
+
+app.get('*', function(request, response){
+  response.sendFile('../client/build/index.html');
+});
 
 //app.maxConnections = 1;
 

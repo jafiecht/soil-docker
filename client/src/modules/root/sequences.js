@@ -5,7 +5,7 @@ import ls from 'local-storage';
 import axios from 'axios';
 var shapefile = require('shapefile');
 
-var serverUrl = 'http://localhost:5000/'
+var serverUrl = 'http://localhost:5050/'
 
 ////////////////////////////////////////////////////////////////////////
 //Change the page. Will likely need a rework

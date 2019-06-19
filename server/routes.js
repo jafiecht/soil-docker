@@ -34,13 +34,14 @@ module.exports = (app) => {
           if (!err) {
             var spawn = require("child_process").spawn;
             var subprocess = spawn(
-              'python', 
+              'python3', 
               ['./scripts/apicall.py', taskID],
               {shell: true}
             );
             var serverStatus;
             subprocess.stdout.on('data', function(data) {
               serverStatus = data.toString();
+              console.log(serverStatus);
             });
             subprocess.on('exit', () => {
               if (serverStatus == 200) {

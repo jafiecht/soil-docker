@@ -39,7 +39,7 @@ class ResultsMap extends Component {
     return (
       <Map 
         className={classes.map}
-        center={[this.props.observations[0][0], this.props.observations[0][1]]}
+        center={this.props.bounds[0]}
         zoom={14}
         dragging={true}
         ref={m => {this.leafletMap=m;}}>
@@ -58,7 +58,7 @@ class ResultsMap extends Component {
 
 export default connect(
   {
-    observations: state`map.observations`,
+    //observations: state`map.observations`,
     jpgPath: state`request.jpgPath`,
     bounds: state`request.bounds`,
 

@@ -19,16 +19,15 @@ RUN apt-get -y install yarn
 
 #Testing: install python libraries
 RUN apt-get update
-RUN apt install python3-pip
-RUN pip3 install pymongo
-RUN pip3 install geopandas
-RUN pip3 install matplotlib
-RUN pip3 install requests
-RUN pip3 install rasterio
-RUN pip3 install scipy
-RUN pip3 install sklearn
-#RUN pip3 install sklearn
-#RUN pip3 install sklearn
+RUN apt -y install python3-pip
+RUN pip3 install --upgrade pip
+RUN python3 -m pip install pymongo
+RUN python3 -m pip install geopandas
+RUN python3 -m pip install matplotlib
+RUN python3 -m pip install requests
+RUN python3 -m pip install rasterio
+RUN python3 -m pip install scipy
+RUN python3 -m pip install sklearn
 
 #A few dev needs...
 RUN apt-get -y install vim

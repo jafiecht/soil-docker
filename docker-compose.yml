@@ -7,6 +7,16 @@ services:
       - "5050:5000"
     restart: always
     env_file: ./.env.dev
-    #depends_on:
-     # - mongo
+    depends_on:
+      - mongo
+
+  mongo:
+    container_name: mongo
+    image: mongo
+    #volumes:
+      #- "${DB_PATH_DEV}:/data/db"
+      #- ./data:/data/db
+    ports:
+      - "27017:27017"
+
 

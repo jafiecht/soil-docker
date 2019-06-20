@@ -51,7 +51,7 @@ class Submit extends Component {
           </Grid>
           <Grid item xs={12} justify='center' container>
             <Typography className={classes.text} align='center'>
-              Your request may take some time, depending on the size of your selected area and how many other users are also submitting requests currently. You will recieve two emails: one as soon as the request is submitted, and one as soon as the request is completed. Please allow up to two hours for your request to be completed.
+              Your request may take some time, depending on the size of your selected area and how many other users are also submitting requests currently. You will recieve two emails: one as soon as the request is submitted, and one as soon as the request is completed. Please wait at least five minutes before submitting another request.
             </Typography>
           </Grid>
           <Grid item xs={12} justify='center' container>

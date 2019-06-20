@@ -3,6 +3,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const rateLimit = require('express-rate-limit');
 const keys = require('./keys');
 require('./models/Task');
 
@@ -14,12 +15,26 @@ mongoose.connect(keys.mongoURI, { useNewUrlParser: true }, (err) => {
   }
 });
 
+const requestLimiter = rateLimit({
+  windowMs: 5 * 60 * 1000,
+  max: 1
+});
+
+const statusLimiter = rateLimit({
+  windowMs: 5 * 60 * 1000,
+  max: 30
+});
+
+
+
 const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static('../client/build'));
 app.use(express.static('public'));
+app.use("/submit", requestLimiter);
+app.use("/status", statusLimiter);
 
 /*Nessesary while in development*/
 app.use(function (req, res, next) {
@@ -38,8 +53,6 @@ require('./routes')(app);
 app.get('*', function(request, response){
   response.sendFile('../client/build/index.html');
 });
-
-//app.maxConnections = 1;
 
 app.listen(5000, function() {
   console.log('Listening on port 5000');

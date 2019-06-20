@@ -3,6 +3,7 @@ import {featureCollection, point, polygon} from '@turf/helpers';
 import * as turf from '@turf/turf';
 import ls from 'local-storage';
 import axios from 'axios';
+import { indiana } from './indiana.js';
 var shapefile = require('shapefile');
 
 var serverUrl = 'http://localhost:5050/'
@@ -505,11 +506,15 @@ export const validateBoundary = sequence("validateBoundary", [
               if (crosses.features.length !== 0) {
                 store.set(state`error`,'Boundary cannot cross itself.')
               } else {
-               var boundary = featureCollection(feature);
-               store.set(state`geojson.boundary`, boundary);       
-               ls(`geojson`, get(state`geojson`));       
-               store.set(state`currentPage`, 3);
-               ls('currentPage', 3);
+                if (!turf.booleanContains(indiana.features[0].geometry, feature)) {
+                  store.set(state`error`, 'Elevation data not available for this area.');
+                } else {
+                  var boundary = featureCollection(feature);
+                  store.set(state`geojson.boundary`, boundary);       
+                  ls(`geojson`, get(state`geojson`));       
+                  store.set(state`currentPage`, 3);
+                  ls('currentPage', 3);
+                }
               }
             }
           }
@@ -541,7 +546,8 @@ export const submitRequest = sequence("submitRequest", [
           ls('currentPage', 4);
         } 
       ).catch((err) => {
-          store.set(state`error`,'A server error has occured. Please re-submit your request at another time.');
+        console.log(err);  
+        store.set(state`error`,'A server error has occured. Please re-submit your request at another time.');
         }
       );
     } else {
@@ -592,11 +598,9 @@ export const checkStatus = sequence("checkStatus", [
           id: get(state`request.inputID`),
         },
       }).then((response) => {
-          console.log(response.data.status);
           store.set(state`request.status`, response.data.status);
           if (response.data.status === 'complete') {
            
-            console.log(response.data);
             if (response.data.tifPath  && response.data.jpgPath && response.data.bounds) {
               store.set(state`request.tifPath`, serverUrl + response.data.tifPath);
               store.set(state`request.jpgPath`, serverUrl + response.data.jpgPath);

@@ -78,7 +78,7 @@ class Status extends Component {
       text = (
         <Grid item justify='center' container>
           <Typography className={classes.text} color='primary' align='center'>
-            Your request is still being processed. Please allow up to two hours for your request to be completed. After completion, your results will persist on the server for two days, after which they will be removed.
+            Your request is still being processed. After completion, your results will persist on the server for two days, after which they will be removed.
           </Typography>
         </Grid>
       );
@@ -102,7 +102,7 @@ class Status extends Component {
       text = (
         <Grid item justify='center' container>
           <Typography className={classes.text} align='center'>
-              Your request may take some time; please allow up to two hours for your request to be completed. You can check the status of your request at any time by entering the unique request id below.
+              Your request may take some time. You can check the status of your request at any time by entering the unique request id below.
           </Typography>
         </Grid>
       );

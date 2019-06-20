@@ -41,7 +41,7 @@ class Welcome extends Component {
           </Grid>
           <Grid item xs={12}>
             <Typography className={classes.text} align='center'>
-              {"High quality soil maps are the lifeblood of Precision Agriculture. You've taken great pains to ensure your soil samples are accurate, so why settle for any less in interpolation? This webtool uses state-of-the-art Machine Learning and high quality elevation data to make the most accurate interpolation possible."}
+              {"High quality soil maps are the lifeblood of Precision Agriculture. You've taken great pains to ensure your soil samples are accurate, so why settle for any less in interpolation? This webtool uses state-of-the-art Machine Learning and high quality elevation data to make the most accurate interpolation possible. Service available for the state of Indiana."}
             </Typography>
           </Grid>
           <Grid item xs={12} sm={6} justify='center' container>

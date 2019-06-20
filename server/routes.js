@@ -52,6 +52,8 @@ module.exports = (app) => {
                 errorEmail(req.body.email, taskID);
               } else {
                 console.log('else?');
+                taskObject.status = 'server error';
+                taskObject.save();
                 errorEmail(req.body.email, taskID);
               }
             });
@@ -199,8 +201,8 @@ function submissionEmail(email, TaskID) {
           server after two days.`,
     html: `<p><b style='font-size:20px'>Interpolation Request Submitted</b><br></p>
           <p><b>Request ID:</b> ${TaskID}<br></p>
-          <p>Please allow up to two hours for your request to completed. All 
-          requests are purged from the server after two days.</p>`
+          <p>Your request was recieved. Check your request with the webtool at any time.
+          All requests are purged from the server after two days.</p>`
   };
   sendMail(mailParams);
 };

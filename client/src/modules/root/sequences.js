@@ -546,8 +546,11 @@ export const submitRequest = sequence("submitRequest", [
           ls('currentPage', 4);
         } 
       ).catch((err) => {
-        console.log(err);  
-        store.set(state`error`,'A server error has occured. Please re-submit your request at another time.');
+          if (err.response.status === 429) {
+            store.set(state`error`,'You are limited to one interpolation request every five minutes. Please wait and try again.');
+          } else { 
+            store.set(state`error`,'A server error has occured. Please re-submit your request at another time.');
+          }
         }
       );
     } else {
@@ -613,7 +616,11 @@ export const checkStatus = sequence("checkStatus", [
           
         } 
       ).catch((err) => {
-          store.set(state`error`,'A server error has occured. Please check status at another time.');
+          if (err.response.status === 429) {
+            store.set(state`error`,'You are limited to thirty status requests every five minutes. Please wait and try again.');
+          } else { 
+            store.set(state`error`,'A server error has occured. Please re-submit your request at another time.');
+          }
         }
       );
     } else {

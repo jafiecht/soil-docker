@@ -13,10 +13,10 @@ taskID = sys.argv[1]
 #Get and prep the data from the server
 ############################################################################
 from pymongo import MongoClient
-import config
+import os
 
-client = MongoClient(config.mongoURI)
-db = client['soil-dev']
+client = MongoClient(os.environ.get('MONGO_URI'))
+db = client['soil']
 tasks = db.tasks
 task = tasks.find_one({'id': taskID})
 data = {

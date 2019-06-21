@@ -3,7 +3,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const rateLimit = require('express-rate-limit');
+//const rateLimit = require('express-rate-limit');
 const keys = require('./keys');
 require('./models/Task');
 
@@ -15,26 +15,28 @@ mongoose.connect(keys.mongoURI, { useNewUrlParser: true }, (err) => {
   }
 });
 
-const requestLimiter = rateLimit({
-  windowMs: 5 * 60 * 1000,
-  max: 1
-});
-
-const statusLimiter = rateLimit({
-  windowMs: 5 * 60 * 1000,
-  max: 30
-});
-
-
-
 const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static('../client/build'));
 app.use(express.static('public'));
+
+
+/*
+//Limit request rate
+const requestLimiter = rateLimit({
+  windowMs: 5 * 60 * 1000,
+  max: 1
+});
 app.use("/submit", requestLimiter);
+
+const statusLimiter = rateLimit({
+  windowMs: 5 * 60 * 1000,
+  max: 30
+});
 app.use("/status", statusLimiter);
+*/
 
 /*Nessesary while in development*/
 app.use(function (req, res, next) {

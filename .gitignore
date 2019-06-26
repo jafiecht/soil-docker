@@ -2,6 +2,6 @@ server/node_modules/
 client/node_modules/
 .env.dev
 server/keys.js
-data/
+dbData/
 server/scripts/config.py
-
+static/

@@ -3,6 +3,8 @@ services:
   web:
     container_name: framework-dev
     build: .
+    volumes:
+      - "~/Projects/research/container/static:/app/server/public"
     ports:
       - "5050:5000"
     restart: always
@@ -13,9 +15,8 @@ services:
   mongo:
     container_name: mongo
     image: mongo
-    #volumes:
-      #- "${DB_PATH_DEV}:/data/db"
-      #- ./data:/data/db
+    volumes:
+      - "~/Projects/research/container/dbData:/data/db"
     ports:
       - "27017:27017"
 
